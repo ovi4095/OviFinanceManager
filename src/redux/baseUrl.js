@@ -1,0 +1,1 @@
+export const baseUrl = 'https://myfinanceapp-2f968-default-rtdb.asia-southeast1.firebasedatabase.app/';
