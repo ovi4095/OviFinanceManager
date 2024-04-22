@@ -36,10 +36,10 @@ const AddTransaction = (props) => {
   }
   return (
     <View style={styles.container}>
+      <View style={styles.inputHolder}>
       <Text
             style={styles.title}
         >Add Transaction Account</Text>
-      <View>
             <View>
                 <TextInput
                     style={styles.input}
@@ -105,12 +105,24 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'flex-start',
-      flexDirection: 'column'
+      flexDirection: 'column',
+  },
+  inputHolder:{
+    backgroundColor: '#fff',
+    height: '100%',
+    shadowColor: '#000', 
+    shadowOffset: { 
+        width: 0, 
+        height: 2, 
+    }, 
+    shadowOpacity: 0.25, 
+    shadowRadius: 3.84, 
   },
   title: {
       fontSize: 24,
       fontWeight: '500',
       marginBottom:20,
+      alignSelf:'center'
   },
   input: {
       width: 350,

@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 const ExpensesTab = (props) => {
   useEffect(()=>{
     props.fetchTransaction()
-  })
+  },[])
 
   // console.log('Selected Exp:',props.selectedTransaction)
 

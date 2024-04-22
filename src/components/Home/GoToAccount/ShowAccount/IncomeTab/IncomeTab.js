@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 const IncomeTab = (props) => {
   useEffect(()=>{
     props.fetchTransaction()
-  })
+},[])
 
 let incomeList = props.selectedTransaction.filter(income => {return income.option === 'income'})
 let totalIncome = 0;
