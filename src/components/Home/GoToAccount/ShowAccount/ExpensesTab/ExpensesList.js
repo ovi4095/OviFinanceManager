@@ -11,6 +11,7 @@ const ExpensesList = (props) => {
                 <ExpensesListItem
                     amount= {info.item.amount}
                     description= {info.item.description}
+                    onItemPressed= {() => props.handleDeleteTransaction(info.item.key)}
 
                 />
             )

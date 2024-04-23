@@ -11,6 +11,7 @@ const AccountList = (props) => {
                 <AccountListItem
                     accountName= {info.item.name}
                     accountCategory= {info.item.category}
+                    onItemPressedDeleteAccount={()=> props.handleDeleteAccount(info.item.key)}
                     onItemPressed= {()=> props.handleSelectedAccount(info.item.key)}
                 />
             )

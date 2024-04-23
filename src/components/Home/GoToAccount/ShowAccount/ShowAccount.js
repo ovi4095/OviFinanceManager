@@ -21,6 +21,9 @@ const ShowAccount = () => {
             name="Expenses" 
             component={ExpensesTab}
             options={{
+              headerStyle: {
+                backgroundColor: '#f40752'
+              },
               tabBarIcon: ({color, size}) =>(
                   <Icon
                     name='sort-amount-down-alt'
@@ -35,6 +38,9 @@ const ShowAccount = () => {
             name="Income" 
             component={IncomeTab}
             options={{
+              headerStyle: {
+                backgroundColor: '#30c67c'
+              },
               tabBarIcon: ({color, size}) =>(
                   <Icon
                     name='sort-amount-up'
@@ -48,6 +54,7 @@ const ShowAccount = () => {
             name="Add Transaction" 
             component={AddTransaction}
             options={{
+              title: 'Transaction',
               tabBarIcon: ({color, size}) =>(
                   <Icon
                     name='clipboard-list'

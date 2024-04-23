@@ -8,15 +8,15 @@ const AccountListItem = (props) => {
         onPress={props.onItemPressed}
         >
         <View style={styles.listItem}>
-          <View style={styles.listFirst} >
-          <Image 
-            source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/FinancePofile.png?alt=media&token=55e3151c-c437-4564-8a09-9c8daf27ff61'}}
-            style={{width:40, height:35, borderRadius: 100, marginLeft: 20}}
-          />
+          <View>
+            <Image 
+              source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/FinancePofile.png?alt=media&token=55e3151c-c437-4564-8a09-9c8daf27ff61'}}
+              style={{width:40, height:35, borderRadius: 100, marginLeft: 20}}
+            />
+          </View>
           <View style={styles.titlePosition}>
             <Text style={styles.textTitle}>{props.accountName}</Text>
             <Text style={styles.textTitleC}>{props.accountCategory}</Text>
-          </View>
           </View>
           <View style={styles.listDeleteBtn}>
             <TouchableOpacity>
@@ -24,6 +24,7 @@ const AccountListItem = (props) => {
                 name='trash-alt'
                 color='red'
                 size={40}
+                onPress={props.onItemPressedDeleteAccount}
               />
             </TouchableOpacity>
           </View>
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
         width:'93%',
         alignItems: 'center',
         padding: 10,
-        backgroundColor: '#3e3b92',
+        backgroundColor: '#211f2f',
         margin: 5,
         borderRadius: 25,
     },
@@ -65,6 +66,12 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: '400',
     },
+    emptyAccountListMsgTitle: {
+      fontSize: 22,
+      
+      alignSelf:'center'
+
+    }
 })
 
 export default AccountListItem

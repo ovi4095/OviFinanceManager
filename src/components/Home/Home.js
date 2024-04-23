@@ -44,7 +44,7 @@ const Home = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:80,
+    marginTop:65,
     display: 'flex',
     flexDirection: 'column',
     justifyContent:'center',
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   image: {
       width: '100%',
-      height: 150,
+      height: 180,
   },
   title: {
       marginBottom: 7,

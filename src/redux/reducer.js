@@ -3,8 +3,9 @@ const initState ={
     accountList: [],
     selectedAccount: null,
     selectedTransaction: [],
-    // selectedExpense: [],
-    // selectedIncome: null,
+    isAuth: false,
+    token: null,
+    userId: null
 }
 
 export const rootReducer = (state=initState, action) => {
@@ -19,20 +20,29 @@ export const rootReducer = (state=initState, action) => {
                 ...state,
                 selectedAccount: action.payload
             }
-            case actionTypes.LOAD_TRANSACTION:
-                // let expense = action.payload.find(expense =>{
-                //     return expense.option.toString() === 'expense'
-                // })
-                // let income = action.payload.find(income =>{
-                //     return income.option.toString() === 'income'
-                // })
-                // console.log("reducer expense", expense);
-                // console.log("reducer income", income);
-                return {
-                    ...state,
-                    selectedTransaction:  action.payload,
+        case actionTypes.LOAD_TRANSACTION:
+            return {
+                ...state,
+                selectedTransaction:  action.payload,
 
-                }
+            }
+        case actionTypes.DELETE_ACCOUNT:
+            return {
+                ...state,
+                accountList: state.accountList.filter(account => account.key !== action.payload),
+            }
+        case actionTypes.DELETE_TRANSACTION:
+            return{
+                ...state,
+                selectedTransaction: state.selectedTransaction.filter(transaction => transaction.key !== action.payload),
+            }
+        case actionTypes.AUTHENTICATE_USER:
+            return {
+                ...state,
+                isAuth: true,
+                token: action.payload.token,
+                userId: action.payload.userId
+            }
         default:
             return state;
     }

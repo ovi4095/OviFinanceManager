@@ -1,17 +1,30 @@
-import { View, Text, StyleSheet, Image} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import React from 'react'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 const ExpensesListItem = (props) => {
   return (
     <View style={styles.listItem}>
-      <Image 
-          source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/expense.png?alt=media&token=14ba7343-bf4a-4684-af82-ad7d0616e89d'}}
-          style={{width:40, height:35, borderRadius: 100}}
-        />
+        <View>
+          <Image 
+              source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/expense.png?alt=media&token=14ba7343-bf4a-4684-af82-ad7d0616e89d'}}
+              style={{width:40, height:35, borderRadius: 100}}
+            />
+        </View>
         <View style={styles.titlePosition}>
           <Text style={styles.textTitle}>Tk: {props.amount}</Text>
           <Text style={styles.textTitleC}>For: {props.description}</Text>
         </View>
+        <View style={styles.listDeleteBtn}>
+            <TouchableOpacity>
+              <Icon
+                name='trash-alt'
+                color='red'
+                size={40}
+                onPress={props.onItemPressed}
+              />
+            </TouchableOpacity>
+          </View>
     </View>
   )
 }
@@ -24,9 +37,13 @@ const styles = StyleSheet.create({
         width:'93%',
         alignItems: 'center',
         padding: 10,
-        backgroundColor:'#c5302e',
+        backgroundColor:'#60696b',
         margin: 5,
         borderRadius: 25,
+    },
+    listDeleteBtn:{
+      alignSelf:'flex-start',
+      marginRight:20,
     },
     titlePosition: {
       flex: 1

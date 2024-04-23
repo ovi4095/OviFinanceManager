@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchTransaction } from '../../../../../redux/actionCreator';
+import { fetchTransaction, removeTransaction } from '../../../../../redux/actionCreator';
 import ExpensesList from './ExpensesList';
 
 const mapStateToProps = state =>  {
@@ -12,14 +12,20 @@ const mapStateToProps = state =>  {
 
 const mapDispatchToProps = dispatch => {
   return{
-    fetchTransaction: () => dispatch(fetchTransaction())
+    fetchTransaction: () => dispatch(fetchTransaction()),
+    removeTransaction: (key) => dispatch(removeTransaction(key))
+
   }
 }
 
 const ExpensesTab = (props) => {
   useEffect(()=>{
     props.fetchTransaction()
-  },[])
+  })
+
+  const handleDeleteTransaction = key => {
+    props.removeTransaction(key)
+  }
 
   // console.log('Selected Exp:',props.selectedTransaction)
 
@@ -30,14 +36,21 @@ const ExpensesTab = (props) => {
     // console.log("for amount", parseInt(amount.amount));
     totalExpense += parseInt(amount.amount)
   }
-  console.log("Total amount", totalExpense);
+  // console.log("Total amount", totalExpense);
+
+  const expensesTransactionList = expenseList.length !== 0?
+      (<View style={styles.listPosition}>
+        <ExpensesList 
+          expenseList={expenseList}
+          handleDeleteTransaction={handleDeleteTransaction}
+        />
+      </View>):
+      (<View><Text style={styles.textTitle}>
+      No Transaction of Expense Found.</Text></View>)
+
   return (
     <View style={styles.container}>
-        <View style={styles.listPosition}>
-          <ExpensesList 
-            expenseList={expenseList}
-          />
-        </View>
+        {expensesTransactionList}
         <View style={styles.totalExpenseTab}>
           <Text style={styles.totalAmountText}>
             Total Expense: {totalExpense} TK
@@ -60,6 +73,14 @@ const styles =StyleSheet.create({
     marginBottom:20,
     marginLeft: 15,
     height:'86%'
+  },
+  textTitle: {
+    alignSelf:'center',
+    color:'#c5302e',
+    marginLeft: 20,
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 20
   },
   totalExpenseTab: {
     width:'100%',
