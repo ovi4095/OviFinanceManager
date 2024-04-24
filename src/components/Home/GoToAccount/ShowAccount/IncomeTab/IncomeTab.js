@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTransaction, removeTransaction } from '../../../../../redux/actionCreator';
 import IncomeList from './IncomeList';
+import { useIsFocused } from '@react-navigation/native';
 
 const mapStateToProps = state =>  {
   return {
@@ -16,11 +17,11 @@ const mapDispatchToProps = dispatch => {
     removeTransaction: (key) => dispatch(removeTransaction(key))
   }
 }
-
 const IncomeTab = (props) => {
+  const focused = useIsFocused()
   useEffect(()=>{
     props.fetchTransaction()
-},[])
+},[focused])
 
 const handleDeleteTransaction = key => {
   props.removeTransaction(key)
@@ -42,6 +43,7 @@ const incomeTransactionList = incomeList.length !== 0?
       </View>):
       (<View><Text style={styles.textTitle}>
       No Transaction of Income Found.</Text></View>)
+
 
   return (
     <View style={styles.container}>

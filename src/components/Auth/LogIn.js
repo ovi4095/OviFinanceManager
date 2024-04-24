@@ -1,8 +1,12 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import backgroundImage from '../../../assets/bgv.gif'
 import { useIsFocused } from '@react-navigation/native'
 import { tryAuth } from '../../redux/authActionCreator'
+import { Button } from 'react-native'
+import Video from 'react-native-video'
+
 
 const mapStateToProps = state => {
   return {
@@ -60,7 +64,18 @@ const updateInputs = (value, name) => {
     }
   })
 }
+
+const onBuffer =(data) => {
+  console.log('on buffer', data)
+}
+
+const videoError= (data) => {
+  console.log('error raised===>', data)
+}
+
+
 const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const rp = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 const handleAuth = () => {
   const email = authStates.inputs.email;
   const password = authStates.inputs.password;
@@ -68,14 +83,18 @@ const handleAuth = () => {
 
   if(email !=='' && password !== '') {
     if (re.test(email)) {
-        if(authStates.mode === 'login') {
-          props.tryAuth(email, password, 'login');
-        } else {
-            if (password === confirmPassword) {
-              props.tryAuth(email, password, 'signup');
-            } else {
-              alert("Password Fields doesn't Match")
-            }
+        if(rp.test(password)){
+          if(authStates.mode === 'login') {
+            props.tryAuth(email, password, 'login');
+          } else {
+              if (password === confirmPassword) {
+                props.tryAuth(email, password, 'signup');
+              } else {
+                alert("Password Fields doesn't Match")
+              }
+          }
+        }else {
+          alert('Password must have minimum eight characters, at least one letter and one number')
         }
     } else {
       alert('Invalid Email')
@@ -85,75 +104,113 @@ const handleAuth = () => {
   }
 }
 
+let authModeTitle = authStates.mode === 'signup'? 'Sign up': 'Log In';
+let authModeTitleColor = authStates.mode === 'signup'?  'fff' : 'fff';
+let authModeBtnColor = authStates.mode === 'signup'?  'f40752' : '009688';
 let confirmPassword = authStates.mode === 'signup'?
 <TextInput
         style={styles.input}
         placeholder='Confirm Password'
+        placeholderTextColor='#fff'
         value={authStates.inputs.confirmPassword}
         onChangeText={value => updateInputs(value, 'confirmPassword')}
       />
 :null;
   return (
-    <View style={styles.loginView}>
-        <TouchableOpacity
-          style={{...styles.btnContainer, backgroundColor: '#1167b1', width: '95%'}}
-          onPress={()=> switchViews()}
-        >
-            <Text 
-              style={styles.btnStyle}
-            >
-                {authStates.mode === 'login'? 'Sign Up': 'Log in'}
-            </Text>
-        </TouchableOpacity>
-        <TextInput
-          style={styles.input} 
-          placeholder='Your Email Address'
-          value={authStates.inputs.email}
-          onChangeText={value => updateInputs(value, 'email')}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder='Password'
-          value={authStates.inputs.password}
-          onChangeText={value => updateInputs(value, 'password')}
-        />
-        {confirmPassword}
-        <TouchableOpacity
-          style={styles.btnContainer}
-          onPress={() => {
-            handleAuth()
-          }}
-        >
-            <Text 
-              style={styles.btnStyle}
-            >
-                {authStates.mode === 'login'? 'Log in': 'Sign Up'}
-            </Text>
-        </TouchableOpacity>
-    </View>
+    <ImageBackground 
+      source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/bg.png?alt=media&token=ef096c25-b072-42c5-8966-e2f7b8ccb6fd'}}
+      style={{width:'100%', flex: 1}}>
+
+        <View style={styles.loginView}>
+            <View><Text style={{...styles.authModeTitle, color:`#${authModeTitleColor}`}}>{authModeTitle}</Text></View>
+            <View style={styles.inputFieldPosition}>
+                <TextInput
+                  style={{...styles.input, borderColor:`#${authModeTitleColor}`}} 
+                  placeholder='Your Email Address'
+                  placeholderTextColor='#fff'
+                  value={authStates.inputs.email}
+                  onChangeText={value => updateInputs(value, 'email')}
+                />
+                <TextInput
+                  style={{...styles.input, borderColor:`#${authModeTitleColor}`}}
+                  placeholder='Password'
+                  placeholderTextColor='#fff'
+                  value={authStates.inputs.password}
+                  onChangeText={value => updateInputs(value, 'password')}
+                />
+                {confirmPassword}
+            </View>
+            <View style={styles.btnGroup}>
+              <View>
+                <TouchableOpacity
+                  style={{...styles.btnContainer, backgroundColor: `#${authModeBtnColor}`,}}
+                  onPress={() => {
+                    handleAuth()
+                  }}
+                >
+                    <Text 
+                      style={styles.btnStyle}
+                    >
+                        {authStates.mode === 'login'? 'Log in': 'Sign Up'}
+                    </Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.signBtnPosition}>
+                <TouchableOpacity
+                  // style={{...styles.btnContainer, backgroundColor: '#1167b1', width: '60%'}}
+                  style={{width: 60, color: "yellow", alignSelf: 'center'}}
+                  onPress={()=> switchViews()}
+                >
+                    <Text 
+                      style={{...styles.signBtn, color:'#fff'}}
+                    >
+                        {authStates.mode === 'login'? "Don't have an Account? Sign Up": 'Already have account? Log in'}
+                    </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+        </View>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    width: '80%',
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#fff',
+    borderRadius: 50,
+    marginBottom: 10,
+    paddingLeft: 10,
+    color:'#fff'
+
+  },
   loginView: {
     flex: 1,
     flexDirection: 'column',
     alignItems:'center',
-    justifyContent:'center',
+    justifyContent:'flex-start',
+    marginTop: 80,
   },
-  input: {
-    width: '95%',
+  signBtn: {
+    width:220,
+    color: '',
+    alignSelf:'flex-end',
+    textAlign:'left',
     padding: 5,
-    marginTop: 10,
-    backgroundColor: '#eee',
-    borderWidth: 1,
-    borderColor: '#009688',
-    borderRadius: 4,
+    margin:15,
+    marginLeft:-15,
   },
   btnStyle: {
     fontSize: 16,
     color: '#fff',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    padding: 5,
   },
   btnContainer: {
     flexDirection: 'row',
@@ -163,6 +220,27 @@ const styles = StyleSheet.create({
     marginTop:10,
     justifyContent:'center',
     alignItems: 'center',
+    borderRadius: 50,
+  },
+  btnGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
+  },
+  signBtnPosition: {
+    marginLeft: 90
+  },
+  authModeTitle: {
+    marginTop:20,
+    fontSize:22,
+    fontWeight: '600',
+    color: '#8dd0fc',
+    margin: 20
+  },
+  inputFieldPosition: { 
+    width:'100%', 
+    alignItems:'center', 
+    marginTop: 20
   }
 })
 

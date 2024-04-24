@@ -19,7 +19,9 @@ export default function App() {
     <NavigationContainer ref={navigationRef }>
       <Provider store={Store}>
           <Stack.Navigator>
-              <Stack.Screen name = "Login" component={LogIn}/>
+              <Stack.Screen
+                options={{headerShown: false}}
+                name = "Login" component={LogIn}/>
               <Stack.Screen
                 options={{
                   headerLeft: null,

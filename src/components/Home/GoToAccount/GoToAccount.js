@@ -4,6 +4,7 @@ import AccountList from './AccountList'
 import { connect } from 'react-redux'
 import { fetchAccount, removeAccount, selectedAccount } from '../../../redux/actionCreator'
 import ExpensesTab from './ShowAccount/ExpensesTab/ExpensesTab'
+import { useIsFocused } from '@react-navigation/native'
 
 const mapStateToProps = state => {
   return {
@@ -22,9 +23,11 @@ const mapDispatchToProps = dispatch => {
 
 const GoToAccount = (props) => {
 
+  const focused = useIsFocused()
+
   useEffect(() => {
     props.fetchAccount();
-  },[])
+  },[focused])
 
   const handleSelectedAccount = key => {
     // const account = props.accountList.find(account => {
