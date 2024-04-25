@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#60696b',
         margin: 5,
         borderRadius: 25,
+        elevation: 5,
     },
     listDeleteBtn:{
       alignSelf:'flex-start',

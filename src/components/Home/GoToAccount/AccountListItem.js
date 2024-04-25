@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#103783',
         margin: 5,
         borderRadius: 25,
+        elevation: 5,
     },
     listFirst: {
        flexDirection:"row",

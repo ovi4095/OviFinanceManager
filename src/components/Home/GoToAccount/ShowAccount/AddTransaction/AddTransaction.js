@@ -16,10 +16,10 @@ const AddTransaction = (props) => {
   const [inputDescription, setInputDescription] = useState('');
   const [inputOption, setInputOption] = useState('expense'); 
   // const [inputOption, setInputOption] =useState('')
-  console.log(typeof(parseFloat(inputNumber)))
+//   console.log(typeof(parseFloat(inputNumber)))
   const handleAddingTransaction = () => {
     if (inputNumber === '' || inputDescription === '') {
-        alert('Required a name and category name to create an account!')
+        alert('Amount must be in number and fields should not be empty!')
     }
     else {
         props.AddingTransaction({
@@ -47,7 +47,7 @@ const AddTransaction = (props) => {
                 <View>
                     <TextInput
                         style={styles.input}
-                        keyboardType = 'numeric'
+                        keyboardType = 'number-pad'
                         placeholder='Add Amount of Money'
                         placeholderTextColor='#fff'
                         value={inputNumber}
