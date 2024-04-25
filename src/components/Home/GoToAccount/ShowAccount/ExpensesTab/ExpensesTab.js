@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground  } from 'react-native';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTransaction, removeTransaction } from '../../../../../redux/actionCreator';
 import ExpensesList from './ExpensesList';
 import { useIsFocused } from '@react-navigation/native';
+import expenseListBg from '../../../../../../assets/images/expenseScreen.png'
+
 
 const mapStateToProps = state =>  {
   return {
@@ -54,20 +56,24 @@ const ExpensesTab = (props) => {
   // },[expenseList])
 
   return (
-    <View style={styles.container}>
-        {expensesTransactionList}
-        <View style={styles.totalExpenseTab}>
-          <Text style={styles.totalAmountText}>
-            Total Expense: {totalExpense} TK
-          </Text>
-        </View>    
-    </View>
+    <ImageBackground
+      source={expenseListBg}
+      style={{width:'100%', flex: 1}}>
+      <View style={styles.container}>
+          {expensesTransactionList}
+          <View style={styles.totalExpenseTab}>
+            <Text style={styles.totalAmountText}>
+              Total Expense: {totalExpense} TK
+            </Text>
+          </View>    
+      </View>
+    </ImageBackground>
   )
 }
 
 const styles =StyleSheet.create({
   container: {
-    backgroundColor:'#fff',
+    // backgroundColor:'#fff',
     margin:0,
     padding:0,
     flex:1,

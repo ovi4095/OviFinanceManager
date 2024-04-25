@@ -1,10 +1,10 @@
-import { View, Text, Button, StyleSheet, Touchable, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, Button, StyleSheet, Touchable, TouchableOpacity, Alert, ImageBackground } from 'react-native'
 import React, { useEffect } from 'react'
 import AccountList from './AccountList'
 import { connect } from 'react-redux'
 import { fetchAccount, removeAccount, selectedAccount } from '../../../redux/actionCreator'
-import ExpensesTab from './ShowAccount/ExpensesTab/ExpensesTab'
 import { useIsFocused } from '@react-navigation/native'
+import accountBackground from '../../../../assets/images/accountList.png'
 
 const mapStateToProps = state => {
   return {
@@ -77,30 +77,35 @@ const GoToAccount = (props) => {
 
   let option = props.accountList.length !== 0 ? "Want to Add Another Account": "Don't have Any Account?";
   return (
-    <View style={styles.container}>
-      <View style={styles.listPosition}>
-        <View style={styles.listTitle}>
-            <Text style={styles.listTitleText}>
-                Account List
-            </Text>
-        </View>
-        <View>
-           {accountList}
-        </View>
-      </View>
-      <View style={styles.btnPosition}>
-        <TouchableOpacity 
-                style={styles.btn}
-                onPress={() => {
-                  props.navigation.navigate('Create Account')
-                }}
-                >
-                <Text style={styles.btnTitle}>
-                    {option}
+    <ImageBackground
+      source={accountBackground}
+      style={{width:'100%', flex: 1,}}>
+        <View style={styles.container}>
+          <View style={styles.listPosition}>
+            <View style={styles.listTitle}>
+                <Text style={styles.listTitleText}>
+                    Account List
                 </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+            </View>
+            <View>
+              {accountList}
+            </View>
+          </View>
+          <View style={styles.btnPosition}>
+            <TouchableOpacity 
+                    style={styles.btn}
+                    onPress={() => {
+                      props.navigation.navigate('Create Account')
+                    }}
+                    >
+                    <Text style={styles.btnTitle}>
+                        {option}
+                    </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+    </ImageBackground>
+      
   )
 }
 const styles = StyleSheet.create({
@@ -111,7 +116,7 @@ const styles = StyleSheet.create({
   listTitle: {
     marginTop:-20,
     marginBottom: 10,
-    backgroundColor:'#8399a2',
+    // backgroundColor:'#8399a2',
     width:'100%',
     padding:10,
     marginLeft: -8,

@@ -1,11 +1,10 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import backgroundImage from '../../../assets/bgv.gif'
 import { useIsFocused } from '@react-navigation/native'
 import { tryAuth } from '../../redux/authActionCreator'
-import { Button } from 'react-native'
-import Video from 'react-native-video'
+import loginBackground from '../../../assets/images/bg.png'
+
 
 
 const mapStateToProps = state => {
@@ -65,15 +64,6 @@ const updateInputs = (value, name) => {
   })
 }
 
-const onBuffer =(data) => {
-  console.log('on buffer', data)
-}
-
-const videoError= (data) => {
-  console.log('error raised===>', data)
-}
-
-
 const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const rp = /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 const handleAuth = () => {
@@ -118,7 +108,7 @@ let confirmPassword = authStates.mode === 'signup'?
 :null;
   return (
     <ImageBackground 
-      source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/bg.png?alt=media&token=ef096c25-b072-42c5-8966-e2f7b8ccb6fd'}}
+      source={loginBackground}
       style={{width:'100%', flex: 1}}>
 
         <View style={styles.loginView}>

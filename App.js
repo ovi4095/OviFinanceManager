@@ -25,6 +25,13 @@ export default function App() {
               <Stack.Screen
                 options={{
                   headerLeft: null,
+                  headerTitleStyle:{
+                    color: '#fff',
+                    fontSize: 22
+                  },
+                  headerStyle:{
+                    backgroundColor:'#41B8D5'
+                  },
                   headerRight: () => (
                   <TouchableOpacity
                     onPress={() => {
@@ -34,7 +41,7 @@ export default function App() {
                     <Icons 
                       name="sign-out-alt" 
                       size={26}
-                      style={{paddingRight:20}}
+                      style={{paddingRight:20, color:'#fff'}}
                     />
                   </TouchableOpacity>
                 )
@@ -42,39 +49,101 @@ export default function App() {
                   name = "Home" component={Home}/>
               <Stack.Screen 
                   options={{
-                  headerRight: () => (
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigate('Login')
-                    }}
-                    >
-                    <Icons 
-                      name="sign-out-alt" 
-                      size={26}
-                      style={{paddingRight:20}}
-                    />
-                  </TouchableOpacity>
-                )
+                    headerTitle: 'Accounts',
+                    headerTitleStyle:{
+                      color: '#fff',
+                      fontSize: 22
+                    },
+                    
+                    headerStyle:{
+                      backgroundColor:'#41B8D5'
+                    },
+                    headerLeft: () => (
+                      <TouchableOpacity
+                      onPress={() => {
+                        navigate('Home')
+                      }}
+                      >
+                      <Icons 
+                        name="arrow-left" 
+                        size={26}
+                        style={{paddingLeft:20, color:'#fff'}}
+                      />
+                    </TouchableOpacity>
+                    ),
+                    headerRight: () => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigate('Login')
+                      }}
+                      >
+                      <Icons 
+                        name="sign-out-alt" 
+                        size={26}
+                        style={{paddingRight:20, color:'#fff'}}
+                      />
+                    </TouchableOpacity>
+                  )
                 }}
                   name = "Finance Account" component={GoToAccount}/>
               <Stack.Screen
                   options={{
-                  headerRight: () => (
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigate('Login')
-                    }}
-                    >
-                    <Icons 
-                      name="sign-out-alt" 
-                      size={26}
-                      style={{paddingRight:20}}
-                    />
-                  </TouchableOpacity>
+                    headerTitleStyle:{
+                      color: '#fff',
+                      fontSize: 22
+                    },
+                    headerStyle:{
+                      backgroundColor:'#3D40D8'
+                    },
+                    headerLeft: () => (
+                      <TouchableOpacity
+                      onPress={() => {
+                        navigate('Home')
+                      }}
+                      >
+                      <Icons 
+                        name="arrow-left" 
+                        size={26}
+                        style={{paddingLeft:20, color:'#fff'}}
+                      />
+                    </TouchableOpacity>
+                    ),
+                    headerRight: () => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        navigate('Login')
+                      }}
+                      >
+                      <Icons 
+                        name="sign-out-alt" 
+                        size={26}
+                        style={{paddingRight:20, color:'#fff'}}
+                      />
+                    </TouchableOpacity>
                 )
                 }}
                   name = "Create Account" component={CreateAccount}/>
-              <Stack.Screen name = "Account Detail" component={ShowAccount}/>
+              <Stack.Screen
+                options={{
+                  headerTitle:'',
+                  headerStyle:{
+                      backgroundColor:'#41B8D5'
+                    },
+                  headerLeft: () => (
+                      <TouchableOpacity
+                      onPress={() => {
+                        navigate('Home')
+                      }}
+                      >
+                      <Icons 
+                        name="arrow-left" 
+                        size={26}
+                        style={{paddingLeft:20, color:'#fff'}}
+                      />
+                    </TouchableOpacity>
+                    ),
+                }} 
+                name = "Account Detail" component={ShowAccount}/>
           </Stack.Navigator>
       </Provider>
     </NavigationContainer>

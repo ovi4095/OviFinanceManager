@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { RadioButton } from 'react-native-paper'
 import { AddingTransaction } from '../../../../../redux/actionCreator'
+import addTransactionBg from '../../../../../../assets/images/addTransaction.png'
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -35,80 +36,84 @@ const AddTransaction = (props) => {
     }
   }
   return (
-    <View style={styles.container}>
-      <View style={styles.inputHolder}>
-      <Text
-            style={styles.title}
-        >Add Transaction Account</Text>
-            <View>
-                <TextInput
-                    style={styles.input}
-                    keyboardType = 'numeric'
-                    placeholder='Add Amount of Money'
-                    value={inputNumber}
-                    onChangeText={text => setInputNumber(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder='Add Description'
-                    value={inputDescription}
-                    onChangeText={text => setInputDescription(text)}
-                />
-            </View>
-            <View style={styles.radioGroup}>
-            <View style={styles.radioButton}> 
-                    <RadioButton.Android 
-                        value="expense"
-                        status={inputOption === 'expense' ?  
-                                'checked' : 'unchecked'} 
-                        onPress={() => setInputOption('expense')} 
-                        color="#007BFF"
-                    /> 
-                    <Text style={styles.radioLabel}> 
-                        Expense 
-                    </Text> 
-                </View> 
-  
+    <ImageBackground
+      source={addTransactionBg}
+      style={{width:'100%', flex: 1,}}>
+        <View style={styles.container}>
+        <View style={styles.inputHolder}>
+        <Text
+                style={styles.title}
+            >Add Transaction Account</Text>
+                <View>
+                    <TextInput
+                        style={styles.input}
+                        keyboardType = 'numeric'
+                        placeholder='Add Amount of Money'
+                        value={inputNumber}
+                        onChangeText={text => setInputNumber(text)}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Add Description'
+                        value={inputDescription}
+                        onChangeText={text => setInputDescription(text)}
+                    />
+                </View>
+                <View style={styles.radioGroup}>
                 <View style={styles.radioButton}> 
-                    <RadioButton.Android 
-                        value="income"
-                        status={inputOption === 'income' ?  
-                                 'checked' : 'unchecked'} 
-                        onPress={() => setInputOption('income')} 
-                        color="#007BFF"
-                    /> 
-                    <Text style={styles.radioLabel}> 
-                        Income 
-                    </Text> 
-                </View> 
-            </View>
-            <View style={styles.btnPosition}>
-                <TouchableOpacity 
-                    style={styles.btn}
-                    onPress={() => {
-                        handleAddingTransaction();
-                    }}
-                    >
-                    <Text style={styles.btnTitle}>
-                        Add Transaction
-                    </Text>
-                </TouchableOpacity>
+                        <RadioButton.Android 
+                            value="expense"
+                            status={inputOption === 'expense' ?  
+                                    'checked' : 'unchecked'} 
+                            onPress={() => setInputOption('expense')} 
+                            color="#fff"
+                        /> 
+                        <Text style={styles.radioLabel}> 
+                            Expense 
+                        </Text> 
+                    </View> 
+    
+                    <View style={styles.radioButton}> 
+                        <RadioButton.Android 
+                            value="income"
+                            status={inputOption === 'income' ?  
+                                    'checked' : 'unchecked'} 
+                            onPress={() => setInputOption('income')} 
+                            color="#fff"
+                        /> 
+                        <Text style={styles.radioLabel}> 
+                            Income 
+                        </Text> 
+                    </View> 
+                </View>
+                <View style={styles.btnPosition}>
+                    <TouchableOpacity 
+                        style={styles.btn}
+                        onPress={() => {
+                            handleAddingTransaction();
+                        }}
+                        >
+                        <Text style={styles.btnTitle}>
+                            Add Transaction
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
-    </View>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-      backgroundColor: '#fff',
+    //   backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'flex-start',
       flexDirection: 'column',
   },
   inputHolder:{
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     height: '100%',
     shadowColor: '#000', 
     shadowOffset: { 
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
   },
   input: {
       width: 350,
-      borderColor: '#3C3C3C',
+      borderColor: '#fff',
       borderBottomWidth: 1,
       padding: 7,
       margin: 20,
@@ -152,25 +157,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around', 
     marginTop: 20, 
     borderRadius: 8, 
-    backgroundColor: 'white', 
+    // backgroundColor: 'white', 
     padding: 16, 
-    elevation: 4, 
-    shadowColor: '#000', 
-    shadowOffset: { 
-        width: 0, 
-        height: 2, 
-    }, 
-    shadowOpacity: 0.25, 
-    shadowRadius: 3.84, 
+   
   }, 
   radioButton: { 
       flexDirection: 'row', 
-      alignItems: 'center', 
+      alignItems: 'center',
   }, 
   radioLabel: { 
       marginLeft: 8, 
       fontSize: 16, 
-      color: '#333', 
+      color: '#fff', 
   }, 
 })
 

@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import expenseLogo from '../../../../../../assets/images/expense.png'
 
 const ExpensesListItem = (props) => {
   return (
     <View style={styles.listItem}>
         <View>
           <Image 
-              source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/expense.png?alt=media&token=14ba7343-bf4a-4684-af82-ad7d0616e89d'}}
+              source={expenseLogo}
               style={{width:40, height:35, borderRadius: 100}}
             />
         </View>

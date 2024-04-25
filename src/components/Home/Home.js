@@ -1,44 +1,52 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
-import img from '../../../assets/favicon.png'
+import homeBackground from '../../../assets/images/home.png'
+import createAccountCardBackground from '../../../assets/images/create.png'
+import goToAccountCardBackground from '../../../assets/images/goTo.png'
+
 const Home = (props) => {
   return (
-    <View style={styles.container}>
-        <View>
-          <TouchableOpacity
-              onPress={() => props.navigation.navigate('Finance Account')}
-          >
-              <View style={styles.card}>
-                  <Image 
-                    source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/goTo.png?alt=media&token=35c334c4-cecd-405d-8d9b-70d46a6c98f3'}}
-                    style={styles.image}
-                  />
-                  <View style={styles.details}>
-                      <Text
-                        style={styles.title}
-                      >Go To Account</Text>
+    <ImageBackground
+      source={homeBackground}
+      style={{width:'100%', flex: 1,}}>
+
+        <View style={styles.container}>
+            <View>
+              <TouchableOpacity
+                  onPress={() => props.navigation.navigate('Finance Account')}
+              >
+                  <View style={styles.card}>
+                      <Image 
+                        source={goToAccountCardBackground}
+                        style={styles.image}
+                      />
+                      <View style={styles.details}>
+                          <Text
+                            style={styles.title}
+                          >Go To Account</Text>
+                      </View>
                   </View>
-              </View>
-          </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity
+                  onPress={() => props.navigation.navigate('Create Account')}
+              >
+                  <View style={styles.card}>
+                      <Image
+                        source={createAccountCardBackground}
+                        style={styles.image}
+                      />
+                      <View style={styles.details}>
+                          <Text
+                            style={styles.title}
+                          >Create an Account</Text>
+                      </View>
+                  </View>
+              </TouchableOpacity>
+            </View>  
         </View>
-        <View>
-          <TouchableOpacity
-              onPress={() => props.navigation.navigate('Create Account')}
-          >
-              <View style={styles.card}>
-                  <Image
-                    source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/create.png?alt=media&token=2f10672f-c281-40dc-a161-d84d21c83c30'}}
-                    style={styles.image}
-                  />
-                  <View style={styles.details}>
-                      <Text
-                        style={styles.title}
-                      >Create an Account</Text>
-                  </View>
-              </View>
-          </TouchableOpacity>
-        </View>  
-    </View>
+    </ImageBackground>
   )
 }
 

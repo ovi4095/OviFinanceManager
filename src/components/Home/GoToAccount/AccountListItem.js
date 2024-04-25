@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import accountProfile from '../../../../assets/images/FinancePofile.png'
 
 const AccountListItem = (props) => {
   return (
@@ -10,8 +11,8 @@ const AccountListItem = (props) => {
         <View style={styles.listItem}>
           <View>
             <Image 
-              source={{uri:'https://firebasestorage.googleapis.com/v0/b/myfinanceapp-2f968.appspot.com/o/FinancePofile.png?alt=media&token=55e3151c-c437-4564-8a09-9c8daf27ff61'}}
-              style={{width:40, height:35, borderRadius: 100, marginLeft: 20}}
+              source={accountProfile}
+              style={{width:50, height:50, borderRadius: 100, marginLeft: 1}}
             />
           </View>
           <View style={styles.titlePosition}>
@@ -36,11 +37,11 @@ const styles = StyleSheet.create({
     listItem: {
         display:"flex",
         flexDirection:"row",
-        justifyContent:'space-around',
+        justifyContent:'',
         width:'93%',
         alignItems: 'center',
-        padding: 10,
-        backgroundColor: '#211f2f',
+        padding: 30,
+        backgroundColor: '#103783',
         margin: 5,
         borderRadius: 25,
     },

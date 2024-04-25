@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchTransaction, removeTransaction } from '../../../../../redux/actionCreator';
 import IncomeList from './IncomeList';
 import { useIsFocused } from '@react-navigation/native';
+import incomeListBg from '../../../../../../assets/images/incomeScreen.png'
 
 const mapStateToProps = state =>  {
   return {
@@ -46,20 +47,24 @@ const incomeTransactionList = incomeList.length !== 0?
 
 
   return (
-    <View style={styles.container}>
-          {incomeTransactionList}
-        <View style={styles.totalIncomeTab}>
-          <Text style={styles.totalAmountText}>
-            Total Income: {totalIncome} TK
-          </Text>
-        </View> 
-    </View>
+    <ImageBackground
+      source={incomeListBg}
+      style={{width:'100%', flex: 1,}}>
+      <View style={styles.container}>
+            {incomeTransactionList}
+          <View style={styles.totalIncomeTab}>
+            <Text style={styles.totalAmountText}>
+              Total Income: {totalIncome} TK
+            </Text>
+          </View> 
+      </View>
+    </ImageBackground>
   )
 }
 
 const styles =StyleSheet.create({
   container: {
-    backgroundColor:'#fff',
+    // backgroundColor:'#fff',
     margin:0,
     padding:0,
     flex:1,
