@@ -49,12 +49,14 @@ const AddTransaction = (props) => {
                         style={styles.input}
                         keyboardType = 'numeric'
                         placeholder='Add Amount of Money'
+                        placeholderTextColor='#fff'
                         value={inputNumber}
                         onChangeText={text => setInputNumber(text)}
                     />
                     <TextInput
                         style={styles.input}
                         placeholder='Add Description'
+                        placeholderTextColor='#fff'
                         value={inputDescription}
                         onChangeText={text => setInputDescription(text)}
                     />
@@ -124,9 +126,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84, 
   },
   title: {
+      color: 'white',
       fontSize: 24,
       fontWeight: '500',
-      marginBottom:20,
+      marginTop:50,
+      marginBottom:30,
       alignSelf:'center'
   },
   input: {
@@ -137,7 +141,8 @@ const styles = StyleSheet.create({
       margin: 20,
   },
   btnPosition: {
-    marginTop:50
+
+    marginTop:16
   },
   btn: {
       width: 200,
@@ -167,7 +172,7 @@ const styles = StyleSheet.create({
   }, 
   radioLabel: { 
       marginLeft: 8, 
-      fontSize: 16, 
+      fontSize: 20, 
       color: '#fff', 
   }, 
 })

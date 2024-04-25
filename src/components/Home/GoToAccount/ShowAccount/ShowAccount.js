@@ -11,6 +11,7 @@ const ShowAccount = () => {
   return (
         <Tab.Navigator
             screenOptions={{
+              headerTitleAlign:'center',
               tabBarShowLabel: true,
               tabBarActiveTintColor: '#696eff',
               tabBarInactiveTintColor: '#60efff'
@@ -59,6 +60,7 @@ const ShowAccount = () => {
                 name="Add Transaction" 
                 component={AddTransaction}
                 options={{
+                  headerShown:false,
                   title: 'Transaction',
                   tabBarIcon: ({color, size}) =>(
                       <Icon

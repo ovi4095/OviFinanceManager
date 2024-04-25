@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
   },
   authModeTitle: {
     marginTop:20,
+    marginBottom:80,
     fontSize:22,
     fontWeight: '600',
     color: '#8dd0fc',

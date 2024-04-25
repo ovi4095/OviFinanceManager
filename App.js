@@ -18,7 +18,9 @@ export default function App() {
   return (
     <NavigationContainer ref={navigationRef }>
       <Provider store={Store}>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{headerTitleAlign: 'center'}}
+          >
               <Stack.Screen
                 options={{headerShown: false}}
                 name = "Login" component={LogIn}/>
@@ -52,11 +54,11 @@ export default function App() {
                     headerTitle: 'Accounts',
                     headerTitleStyle:{
                       color: '#fff',
-                      fontSize: 22
+                      fontSize: 22,
                     },
                     
                     headerStyle:{
-                      backgroundColor:'#41B8D5'
+                      backgroundColor:'#41B8D5',
                     },
                     headerLeft: () => (
                       <TouchableOpacity
@@ -132,7 +134,7 @@ export default function App() {
                   headerLeft: () => (
                       <TouchableOpacity
                       onPress={() => {
-                        navigate('Home')
+                        navigate('Finance Account')
                       }}
                       >
                       <Icons 
