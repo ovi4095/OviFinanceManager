@@ -27,7 +27,7 @@ export const tryAuth = (email, password, mode) => dispatch => {
     axios.post(url,authData)
     .then(res => res.data)
     .then(data => {
-        console.log("response error",data.error)
+        
         if(data.error) {    
             alert(data.error);
         }else {
